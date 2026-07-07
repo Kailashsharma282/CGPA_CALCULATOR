@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator & What-If Simulator</title>
+    <meta name="description" content="Calculate your GPA and CGPA, and simulate future semesters with What-If mode.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Dashboard -->
+        <aside class="dashboard glass-panel">
+            <div class="logo">
+                <h1>Grade<span class="highlight">Sync</span></h1>
+            </div>
+            
+            <div class="metrics">
+                <div class="metric-card">
+                    <h3>Overall CGPA</h3>
+                    <div class="score" id="overall-cgpa">0.00</div>
+                    <div class="credits">Total Credits: <span id="total-credits">0</span></div>
+                </div>
+                
+                <div class="what-if-toggle">
+                    <label class="switch-container">
+                        <input type="checkbox" id="what-if-switch">
+                        <span class="slider"></span>
+                        <span class="label-text">What-If Mode</span>
+                    </label>
+                    <p class="what-if-help">Enable to simulate future semesters without affecting actual records.</p>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="add-semester-btn" class="btn primary-btn">+ Add Semester</button>
+                <button id="add-simulated-semester-btn" class="btn secondary-btn hidden">+ Add Simulated Semester</button>
+                <button id="reset-btn" class="btn danger-btn">Reset All</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header>
+                <h2>Your Semesters</h2>
+                <p>Add subjects, credits, and grades to calculate your performance.</p>
+            </header>
+            
+            <div id="semesters-container" class="semesters-container">
+                <!-- Semesters will be injected here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Templates for dynamic rendering -->
+    <template id="semester-template">
+        <div class="semester-card glass-panel" data-id="">
+            <div class="semester-header">
+                <h3 class="semester-title">Semester <span class="sem-number"></span></h3>
+                <div class="semester-gpa-badge">GPA: <span class="sem-gpa">0.00</span></div>
+                <button class="remove-sem-btn btn-icon" title="Remove Semester">×</button>
+            </div>
+            
+            <div class="subjects-container">
+                <div class="subject-header-row">
+                    <div class="col-name">Subject Name</div>
+                    <div class="col-credits">Credits</div>
+                    <div class="col-grade">Grade</div>
+                    <div class="col-action"></div>
+                </div>
+                <div class="subjects-list">
+                    <!-- Subjects go here -->
+                </div>
+            </div>
+            
+            <button class="add-subject-btn btn text-btn">+ Add Subject</button>
+        </div>
+    </template>
+
+    <template id="subject-template">
+        <div class="subject-row" data-id="">
+            <div class="col-name">
+                <input type="text" class="subject-name-input" placeholder="Subject Name">
+            </div>
+            <div class="col-credits">
+                <input type="number" class="subject-credits-input" placeholder="Cr" min="0" step="0.5">
+            </div>
+            <div class="col-grade">
+                <select class="subject-grade-select">
+                    <option value="" disabled selected>Grade</option>
+                    <option value="10">O (10)</option>
+                    <option value="9">A+ (9)</option>
+                    <option value="8">A (8)</option>
+                    <option value="7">B+ (7)</option>
+                    <option value="6">B (6)</option>
+                    <option value="5">C (5)</option>
+                    <option value="4">P (4)</option>
+                    <option value="0">F (0)</option>
+                </select>
+            </div>
+            <div class="col-action">
+                <button class="remove-subject-btn btn-icon" title="Remove Subject">×</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
