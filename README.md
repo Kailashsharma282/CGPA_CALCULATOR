@@ -1,0 +1,2 @@
+# CGPA_CALCULATOR
+for COSC Hackweek 2026
